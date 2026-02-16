@@ -13,4 +13,4 @@
 
 * [Урок 1](https://github.com/petrmileshko/study_c/tree/main/c_1)
 
-* [Урок 2](https://github.com/petrmileshko/study_c/tree/main/c_2)
+* [Урок 2](https://github.com/petrmileshko/study_c/tree/main/с_2)
