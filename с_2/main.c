@@ -2,13 +2,25 @@
  *        Фаренгейт     Цельсия
  * от 0 до 300 с шагом 20 Фаренгейт
  */
-#include <stdio.h>
+#include <stdio.h> // стандартная библиотека
 
 int main()
 {
-    int fahr, celcius;
+    // объявление переменных
+    int fahr, celcius; // fahr - Фаренгейт, celcius - Цельсия
+    int lower, upper, step;
 
-    fahr = 0;
-    celcius = 5*(fahr-32)/9;
-    printf("%d\t%d\n",fahr, celcius);
+    // присваивание переменной значения
+    lower = 0;   // нижняя граница температур в таблице
+    upper = 300; // верхняя граница
+    step = 20;   // величина шага
+
+        fahr = lower;
+    /* Для вывода таблицой используем цикл с шагом 20*/
+    while (fahr <= upper)
+    {
+        celcius = 5 * (fahr - 32) / 9; // присваивание переменной результата вычислений (перевод Фаренгейт в Цельсия по формуле C = (5/9)(F - 32) )
+        printf("%d\t%d\n", fahr, celcius);
+        fahr += step;
+    }
 }
