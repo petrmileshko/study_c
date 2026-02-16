@@ -7,7 +7,7 @@ BIN_DIR = bin
 
 TARGET_PATH = $(BIN_DIR)/$(TARGET)
 
-SRC_FILES = main.c
+SRC_FILES = task.c
 
 .PHONY: all clean
 
