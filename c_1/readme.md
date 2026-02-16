@@ -22,11 +22,11 @@
 
 Пример организации файловой структуры программы:
 
-с_1/
-Makefile
-main.c
-bin/
-c_1.exe
+  с_1/
+  Makefile
+  main.c
+  bin/
+  c_1.exe
 
 ---
 Файл Makefile пример:
