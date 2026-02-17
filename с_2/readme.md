@@ -10,7 +10,7 @@
 
 Запустить сборку:
 
-    - команда в консоли make
+    make
 
 Файл программы c_2.exe создатся в директории bin
 
@@ -33,7 +33,7 @@
 
 В Makefile исправить:
 
-    - SRC_FILES = main_1.c
+    SRC_FILES = main_1.c
 
 ### Часть вторая
 
@@ -48,7 +48,7 @@
 
 В Makefile исправить:
 
-    - SRC_FILES = main_2.c
+    SRC_FILES = main_2.c
 
 ### Часть третья
 
@@ -58,7 +58,7 @@
 
 В Makefile исправить:
 
-    - SRC_FILES = main_3.c
+    SRC_FILES = main_3.c
 
 ### Часть четвёртая
 
@@ -68,4 +68,4 @@
 
 В Makefile исправить:
 
-    - SRC_FILES = main_4.c
+    SRC_FILES = main_4.c
