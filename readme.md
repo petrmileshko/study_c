@@ -18,6 +18,23 @@
 
  6. В переменную среды PATH добавить путь к компилятору gcc и сборщику make.
 ---
+
+Проверить установку компилятора В терминале VS Code выполнить команду:
+
+    gcc --version
+
+В терминале появится сообщение:
+
+    gcc.exe (Rev11, Built by MSYS2 project) 15.2.0
+
+Проверить установку сборщика В терминале VS Code выполнить команду:
+
+    make --version
+
+В терминале появится сообщение:
+
+    GNU Make 4.4.1
+
 ## Примеры и задачи
 
 * [с_1](https://github.com/petrmileshko/study_c/tree/main/c_1), [с_2](https://github.com/petrmileshko/study_c/tree/main/с_2)
