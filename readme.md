@@ -7,7 +7,7 @@
  3. Обновить пакетный менеджер и базовые пакеты. После установки запустить терминал MSYS2 и выполнить команду:
 
             pacman -Su
-            
+
  4. Установить компилятор. В терминале MSYS2 выполнить команду:
 
             pacman -S mingw-w64-ucrt-x86_64-gcc
@@ -20,6 +20,4 @@
 ---
 ## Примеры и задачи
 
-* [Урок 1](https://github.com/petrmileshko/study_c/tree/main/c_1)
-
-* [Урок 2](https://github.com/petrmileshko/study_c/tree/main/с_2)
+* [с_1](https://github.com/petrmileshko/study_c/tree/main/c_1), [с_2](https://github.com/petrmileshko/study_c/tree/main/с_2)
