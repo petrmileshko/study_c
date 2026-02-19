@@ -8,7 +8,7 @@
 
     - Makefile — исправить TARGET = c_3 и SRC_FILES = main.c
 
-    - Makefile — добавить в CFLAGS флаги -std=c23 -pedantic -Werror
+    - Makefile — проверка C23: добавить в CFLAGS флаги -std=c23 -pedantic -Werror
 
 Запустить сборку:
 
