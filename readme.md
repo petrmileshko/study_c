@@ -38,4 +38,4 @@
 
 ## Примеры и задачи
 
-* [с_1](https://github.com/petrmileshko/study_c/tree/main/c_1), [с_2](https://github.com/petrmileshko/study_c/tree/main/с_2), [с_3](https://github.com/petrmileshko/study_c/tree/main/с_3)
+* [с_1](https://github.com/petrmileshko/study_c/tree/main/c_1), [с_2](https://github.com/petrmileshko/study_c/tree/main/с_2), [с_3](https://github.com/petrmileshko/study_c/tree/main/с_3), [с_4](https://github.com/petrmileshko/study_c/tree/main/с_4)
