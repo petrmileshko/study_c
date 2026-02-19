@@ -10,3 +10,7 @@ insert_final_newline = true
 
 [*.svg]
 insert_final_newline = false
+
+[*.c]
+indent_size = 4
+max_line_length = 80
