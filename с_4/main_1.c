@@ -10,7 +10,10 @@
 
 int main(void)
 {
-    long number_of_spaces = 0, number_of_tab = 0, number_of_enter = 0;
+    long number_of_spaces = 0, // символ пробела
+        number_of_tab = 0,     // символы табуляции
+        number_of_eol = 0;     // eol - конец строки (end of lines)
+
     int c;
 
     while ((c = getchar()) != EOF)
@@ -20,9 +23,9 @@ int main(void)
         // до оператора break
         switch (c)
         {
-        case '\n': // условие - конец строки Enter
-            number_of_enter++;  // блок кода
-            break; // до оператора break
+        case '\n':           // условие - конец строки
+            number_of_eol++; // блок кода до оператора break
+            break;
         case '\t': // условие - табуляция Tab
             number_of_tab++;
             break;
@@ -40,6 +43,16 @@ int main(void)
         perror("Input Error");
         return 1;
     }
+
+    printf("\n%-8s%8s\n", "SYMBOL", "TOTAL");
+    printf("\n%-8s%8ld", "EOL", number_of_eol);
+    printf("\n%-8s%8ld", "TAB", number_of_tab);
+    printf("\n%-8s%8ld\n", "SPACE", number_of_spaces);
+    /**
+     *  форматирование вывода - %-8s%8ld означает:
+     *  %-8s минимум 8 символов, выравнять по левому краю, тип данных string
+     *  %8ld минимум 8 символов, выравнять по правому краю, тип данных long
+     */
 
     return 0;
 }
