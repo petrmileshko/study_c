@@ -34,7 +34,7 @@
 
 В Makefile исправить:
 
-    SRC_FILES = main_2.c
+    SRC_FILES = main_1.c
 
 ---
 Собрать и запустить:
