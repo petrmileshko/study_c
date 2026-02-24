@@ -13,7 +13,8 @@
 
     bool locale_status = true; // флаг локали по умолчанию true
 
-    int c; // введённый пользователем символ с клавиатуры
+    int c, // текущий введённый пользователем символ с клавиатуры
+        last_c = '\n'; // последний введённый символ с клавиатуры
 
     long total_chars = 0, // счётчик символов
         total_lines = 0, // счётчик строк
@@ -48,6 +49,32 @@
     // Выход из цикла при нажатии Ctrl-X (код 24)
     while( (c = getchar()) != 24) {
         total_chars++; // увеличиваем счетчик символов, учёт всех кроме Ctrl-x
+
+        if( c == '\n') {
+            // завершаем строку
+            total_lines++; 
+        }
+
+        if( (c == ' ' || c == '\t' || c == '\n') &&
+            !(last_c == ' ' || last_c == '\t' || last_c == '\n') ) {
+            // Завершаем слово при условии,
+            // что перед этим не было символа, указанного в условии
+            total_words++;
+        }
+
+        last_c = c; // Запомнить последний символ
+    }
+    
+     // Учёт последнего незавершённого слова
+    if(!(last_c == ' ' || last_c == '\t' || last_c == '\n') && total_chars > 0)
+    {
+        total_words++;
+    }
+
+    // Учёт последней незавершённой строки
+    if(last_c != '\n' && total_chars > 0)
+    {
+        total_lines++;
     }
     
     // Обработать если ошибка при вводе
@@ -60,19 +87,19 @@
         return 1; // Завершить программу
     }
 
-        if(locale_status) {
-            // Вывод таблицы на кириллице
-            printf("\n%s\t\t%s\n", "СЧЁТЧИК", "ИТОГО");
-            printf("\n%s\t%ld", "СИМВОЛОВ", total_chars);
-            printf("\n%s\t\t%ld", "СТРОК", total_lines);
-            printf("\n%s\t\t%ld", "СЛОВ", total_words);
-        } else {
-            // Вывод таблицы на латинице (английский язык или транслит)
-            printf("\n%s\t\t%s\n", "COUNTER", "TOTAL");
-            printf("\n%s\t\t%ld", "CHARS", total_chars);
-            printf("\n%s\t\t%ld", "LINES", total_lines);
-            printf("\n%s\t\t%ld", "WORDS", total_words);
-        }
+    if(locale_status) {
+        // Вывод таблицы на кириллице
+        printf("\n%s\t\t%s\n", "СЧЁТЧИК", "ИТОГО");
+        printf("\n%s\t%ld", "СИМВОЛОВ", total_chars);
+        printf("\n%s\t\t%ld", "СТРОК", total_lines);
+        printf("\n%s\t\t%ld", "СЛОВ", total_words);
+    } else {
+        // Вывод таблицы на латинице (английский язык или транслит)
+        printf("\n%s\t\t%s\n", "COUNTER", "TOTAL");
+        printf("\n%s\t\t%ld", "CHARS", total_chars);
+        printf("\n%s\t\t%ld", "LINES", total_lines);
+        printf("\n%s\t\t%ld", "WORDS", total_words);
+    }
 
     return 0;
  }
