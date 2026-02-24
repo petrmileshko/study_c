@@ -28,27 +28,32 @@
 
     if(locale_status) {
         // если удалось установить русскую локаль UTF-8
-        // выводим на кириллице
+        // выводим инструкцию пользователя на кириллице
         printf("Для завершения ввода:\n");
         printf("1. Нажать комбинацию Ctrl + X\n");
         printf("2. Нажать клавишу Enter\n");
         printf("Начните ввод текста >>>");
     } else {
+        // вывод инструкции пользователя на латинице
+        // (английский язык или транслит)
         printf("To exit:\n");
         printf("1. Press Ctrl + X\n");
         printf("2. Press Enter\n");
         printf("Input text now >>>");
     }
 
+    // считываем символы пока не встретится Ctrl-x
     while( (c = getchar()) != 24) {
-        total_chars++;
+        total_chars++; // увеличиваем счетчик символов, учёт всех кроме Ctrl-x
     }
     
 
         if(locale_status) {
+            // вывод таблицы на кириллице
             printf("\n%s\t\t%s\n", "СЧЁТЧИК", "ИТОГО");
             printf("\n%s\t%ld", "СИМВОЛОВ", total_chars);
         } else {
+            // вывод таблицы на латинице (английский язык или транслит)
             printf("\n%s\t\t%s\n", "COUNTER", "TOTAL");
             printf("\n%s\t\t%ld", "CHARS", total_chars);
         }
