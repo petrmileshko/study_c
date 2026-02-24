@@ -83,7 +83,7 @@
 
       LINES        3
       WORDS        0
-      CHARS        10
+      CHARS        12
 
 ---
 Очистить проект в консоли VS Code:
