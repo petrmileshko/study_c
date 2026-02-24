@@ -81,7 +81,7 @@
 
     COUNTER        TOTAL
 
-      LINES        2
+      LINES        3
       WORDS        0
       CHARS        4
 
