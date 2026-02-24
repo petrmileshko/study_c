@@ -35,6 +35,13 @@
 
         }
 
+        // обработаем если возникла ошибка при вводе
+        if (ferror(stdin))
+        {
+             perror("Input Error");
+             return 1;
+        }
+
         // Форматируем и выводим на экран таблицу
         printf("\n%8s\t%-8s\n", "COUNTER","TOTAL");
         printf("\n%8s\t%-8ld","LINES", number_of_lines);
