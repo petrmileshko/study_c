@@ -21,15 +21,15 @@
 
     // Пытаемся переключить русскую локаль UTF-8 
     if(setlocale(LC_ALL, "ru_RU.UTF8") == NULL) {
-        // пробуем альтернативный вариант
+        // Пробуем альтернативный вариант
         if(setlocale(LC_ALL, ".UTF8") == NULL) {
-            locale_status = false; // не получилось - сброс флага локали
-            setlocale(LC_ALL,""); // использовать системную локаль
+            locale_status = false; // Не получилось - сброс флага локали
+            setlocale(LC_ALL,""); // Использовать системную локаль
         }
     }
 
     if(locale_status) {
-        // если удалось установить русскую локаль UTF-8
+        // Если удалось установить русскую локаль UTF-8
         // выводим инструкцию пользователя на кириллице
         printf("Для завершения ввода:\n");
         printf("1. Нажать комбинацию Ctrl + X\n");
@@ -44,29 +44,33 @@
         printf("Input text now >>>");
     }
 
-    // считываем символы пока не встретится Ctrl-x
+    // Считываем символы пока не встретится Ctrl-x
     while( (c = getchar()) != 24) {
         total_chars++; // увеличиваем счетчик символов, учёт всех кроме Ctrl-x
     }
     
-    // обработать если ошибка при вводе
+    // Обработать если ошибка при вводе
     if(ferror(stdin)) {
         if(locale_status) {
             perror("Ошибка ввода.");
         } else {
             perror("Input error.");
         }
-        return 1; // завершить программу
+        return 1; // Завершить программу
     }
 
         if(locale_status) {
-            // вывод таблицы на кириллице
+            // Вывод таблицы на кириллице
             printf("\n%s\t\t%s\n", "СЧЁТЧИК", "ИТОГО");
             printf("\n%s\t%ld", "СИМВОЛОВ", total_chars);
+            printf("\n%s\t\t%ld", "СТРОК", total_lines);
+            printf("\n%s\t\t%ld", "СЛОВ", total_words);
         } else {
-            // вывод таблицы на латинице (английский язык или транслит)
+            // Вывод таблицы на латинице (английский язык или транслит)
             printf("\n%s\t\t%s\n", "COUNTER", "TOTAL");
             printf("\n%s\t\t%ld", "CHARS", total_chars);
+            printf("\n%s\t\t%ld", "LINES", total_lines);
+            printf("\n%s\t\t%ld", "WORDS", total_words);
         }
 
     return 0;
