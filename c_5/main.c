@@ -15,7 +15,9 @@
 
     int c;
 
-    long total_chars = 0; // счётчик символов
+    long total_chars = 0, // счётчик символов
+        total_lines = 0, // счётчик строк
+        total_words = 0; // счётчик слов
 
     // Пытаемся переключить русскую локаль UTF-8 
     if(setlocale(LC_ALL, "ru_RU.UTF8") == NULL) {
@@ -47,6 +49,15 @@
         total_chars++; // увеличиваем счетчик символов, учёт всех кроме Ctrl-x
     }
     
+    // обработать если ошибка при вводе
+    if(ferror(stdin)) {
+        if(locale_status) {
+            perror("Ошибка ввода.");
+        } else {
+            perror("Input error.");
+        }
+        return 1; // завершить программу
+    }
 
         if(locale_status) {
             // вывод таблицы на кириллице
