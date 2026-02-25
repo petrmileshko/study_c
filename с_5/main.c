@@ -117,5 +117,6 @@ int main(void)
         printf("\n%s\t\t%ld", "WORDS", total_words);
     }
 
+    putchar('\n');
     return 0;
 }
