@@ -24,11 +24,27 @@ int main(void)
         }
     }
    
+    if (locale_status) 
+    {
+        printf("Программа анализа длин слов\n");
+        printf("Вводите текст (посимвольно). Для завершения:\n");
+        printf("1. Нажмите Ctrl + X\n");
+        printf("2. Затем нажмите Enter\n");
+        printf("Начните ввод >>>\n");
+    } else
+    {
+        printf("Word length analysis program\n");
+        printf("Input text (character by character). To exit:\n");
+        printf("1. Press Ctrl + X\n");
+        printf("2. Then press Enter\n");
+        printf("Start input >>>\n");
+    }
+
+
     if (locale_status)
     {
         printf("   %s | %s\n","Длина","Слов");
-    }
-    else
+    } else
     {
         printf("%8s | %s\n","Length","Words");
 
