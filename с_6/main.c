@@ -11,7 +11,8 @@
  */
 
 #define MAX_CHARS 50
-#define OUTPUT_TYPE 1 // 0 - таблица, 1 - гистограмма
+#define OUTPUT_TYPE 1 // 0 - таблица, в противном случае - гистограмма
+#define HIST_CHAR '*' // символ, используемый для рисования полосы в гистограмме
 
 int main(void)
 {
@@ -71,7 +72,7 @@ int main(void)
                 printf("%8d | ", i);
 
                 for(int j = 0; j < analysis_table[i]; j++) {
-                    putchar('*');
+                    putchar(HIST_CHAR);
                 }
                 putchar('\n');
 
@@ -79,7 +80,7 @@ int main(void)
             {
                 printf("      50+| ");             
                 for(int j = 0; j < analysis_table[i]; j++) {
-                    putchar('*');
+                    putchar(HIST_CHAR);
                 }
                 putchar('\n');
 
