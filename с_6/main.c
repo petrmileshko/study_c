@@ -10,15 +10,15 @@
  *  Вывести результат в таблице или ввиде гистограммы
  */
 
-#define MAX_CHARS 50  // слова длиной больше 50 встречаются реже
-#define OUTPUT_TYPE 0 // 0 - таблица, в противном случае - гистограмма
+#define MAX_CHARS 50  // максимальная длина слова (допустить, что слова более этого значения встречаются редко)
+#define OUTPUT_TYPE 1 // 0 - таблица, в противном случае - гистограмма
 #define HIST_CHAR '*' // символ, используемый для рисования полосы в гистограмме
 
 int main(void)
 {
 
     bool locale_status = true;
-    int analysis_table[MAX_CHARS + 1] = {0}; // 51 элемент массива будет хранить количество слов длиной 50 и более 
+    int analysis_table[MAX_CHARS + 1] = {0}; // 50 элемент массива будет хранить количество слов длиной 50 и более 
     // элементы с 1 по 49 будут хранить количество слов, длины которых соответсвуют индексу элемента 
 
     if (setlocale(LC_ALL, "ru_RU.UTF8") == 0)
@@ -47,10 +47,10 @@ int main(void)
     }
 
     // Протестируем вывод мз массива с тестовыми данными
-    analysis_table[4] = 30;
-    analysis_table[5] = 20;
-    analysis_table[1] = 40;
-    analysis_table[50] = 10;
+    analysis_table[4] = 14;
+    analysis_table[5] = 12;
+    analysis_table[1] = 3;
+    analysis_table[MAX_CHARS] = 5;
 
     if (locale_status)
     {
@@ -77,7 +77,7 @@ int main(void)
 
             } else if(i == MAX_CHARS)
             {
-                printf("      50+| ");             
+                printf("      %d+| ", MAX_CHARS);             
                 for(int j = 0; j < analysis_table[i]; j++) {
                     putchar(HIST_CHAR);
                 }
@@ -95,7 +95,7 @@ int main(void)
                 printf("%8d | %d\n", i, analysis_table[i]);
             } else if(i == MAX_CHARS)
             {
-                printf("      50+| %d\n",analysis_table[i]);
+                printf("      %d+| %d\n", MAX_CHARS, analysis_table[i]);
             }
         }
     }
