@@ -98,14 +98,13 @@ int main(void)
                 }
                 putchar('\n');
 
-            } else if(i == MAX_CHARS)
+            } else if(analysis_table[i] > 0 && i == MAX_CHARS)
             {
                 printf("      %d+| ", MAX_CHARS);             
                 for(int j = 0; j < analysis_table[i]; j++) {
                     putchar(HIST_CHAR);
                 }
                 putchar('\n');
-
             }
         }
     } 
@@ -116,7 +115,7 @@ int main(void)
             if(analysis_table[i] > 0 && i < MAX_CHARS)
             {
                 printf("%8d | %d\n", i, analysis_table[i]);
-            } else if(i == MAX_CHARS)
+            } else if(analysis_table[i] > 0 && i == MAX_CHARS)
             {
                 printf("      %d+| %d\n", MAX_CHARS, analysis_table[i]);
             }
