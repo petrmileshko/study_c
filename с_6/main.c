@@ -7,10 +7,11 @@
  *  Посимвольный ввод с клавиатуры.
  *  Окончание ввода  - Ctrl X
  *  Для разных значений длины подсчитать количество слов
- *  Вывести результат в таблице
+ *  Вывести результат в таблице или ввиде гистограммы
  */
 
 #define MAX_CHARS 50
+#define OUTPUT_TYPE 1 // 0 - таблица, 1 - гистограмма
 
 int main(void)
 {
@@ -45,11 +46,11 @@ int main(void)
     }
 
     // Протестируем вывод мз массива с тестовыми данными
-    analysis_table[4] = 3;
-    analysis_table[5] = 2;
-    analysis_table[1] = 4;
-    analysis_table[50] = 1;
-    analysis_table[51] = 2;
+    analysis_table[4] = 30;
+    analysis_table[5] = 20;
+    analysis_table[1] = 40;
+    analysis_table[50] = 10;
+    analysis_table[51] = 20;
 
     if (locale_status)
     {
@@ -60,14 +61,42 @@ int main(void)
 
     }
 
-    for (int i = 1; i <= MAX_CHARS + 1; i++)
+    if(OUTPUT_TYPE)
     {
-        if(analysis_table[i] > 0 && i <= MAX_CHARS)
+        printf("   _____________\n");
+        for (int i = 1; i <= MAX_CHARS + 1; i++)
         {
-            printf("%8d | %d\n", i, analysis_table[i]);
-        } else if(i == MAX_CHARS + 1)
+            if(analysis_table[i] > 0 && i <= MAX_CHARS)
+            {
+                printf("%8d | ", i);
+
+                for(int j = 0; j < analysis_table[i]; j++) {
+                    putchar('*');
+                }
+                putchar('\n');
+
+            } else if(i == MAX_CHARS + 1)
+            {
+                printf("      50+| ");             
+                for(int j = 0; j < analysis_table[i]; j++) {
+                    putchar('*');
+                }
+                putchar('\n');
+
+            }
+        }
+    } 
+    else
+    {
+        for (int i = 1; i <= MAX_CHARS + 1; i++)
         {
-            printf("      50+| %d\n",analysis_table[i]);
+            if(analysis_table[i] > 0 && i <= MAX_CHARS)
+            {
+                printf("%8d | %d\n", i, analysis_table[i]);
+            } else if(i == MAX_CHARS + 1)
+            {
+                printf("      50+| %d\n",analysis_table[i]);
+            }
         }
     }
     
