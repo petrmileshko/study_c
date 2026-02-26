@@ -10,8 +10,8 @@
  *  Вывести результат в таблице или ввиде гистограммы
  */
 
-#define MAX_CHARS 50
-#define OUTPUT_TYPE 1 // 0 - таблица, в противном случае - гистограмма
+#define MAX_CHARS 50  // слова длиной больше 50 встречаются реже
+#define OUTPUT_TYPE 0 // 0 - таблица, в противном случае - гистограмма
 #define HIST_CHAR '*' // символ, используемый для рисования полосы в гистограмме
 
 int main(void)
@@ -51,7 +51,6 @@ int main(void)
     analysis_table[5] = 20;
     analysis_table[1] = 40;
     analysis_table[50] = 10;
-    analysis_table[51] = 20;
 
     if (locale_status)
     {
@@ -65,9 +64,9 @@ int main(void)
     if(OUTPUT_TYPE)
     {
         printf("   _____________\n");
-        for (int i = 1; i <= MAX_CHARS + 1; i++)
+        for (int i = 1; i < MAX_CHARS + 1; i++)
         {
-            if(analysis_table[i] > 0 && i <= MAX_CHARS)
+            if(analysis_table[i] > 0 && i < MAX_CHARS)
             {
                 printf("%8d | ", i);
 
@@ -76,7 +75,7 @@ int main(void)
                 }
                 putchar('\n');
 
-            } else if(i == MAX_CHARS + 1)
+            } else if(i == MAX_CHARS)
             {
                 printf("      50+| ");             
                 for(int j = 0; j < analysis_table[i]; j++) {
@@ -89,12 +88,12 @@ int main(void)
     } 
     else
     {
-        for (int i = 1; i <= MAX_CHARS + 1; i++)
+        for (int i = 1; i < MAX_CHARS + 1; i++)
         {
-            if(analysis_table[i] > 0 && i <= MAX_CHARS)
+            if(analysis_table[i] > 0 && i < MAX_CHARS)
             {
                 printf("%8d | %d\n", i, analysis_table[i]);
-            } else if(i == MAX_CHARS + 1)
+            } else if(i == MAX_CHARS)
             {
                 printf("      50+| %d\n",analysis_table[i]);
             }
