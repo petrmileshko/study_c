@@ -10,10 +10,14 @@
  *  Вывести результат в таблице
  */
 
+#define MAX_CHARS 50
+
 int main(void)
 {
 
     bool locale_status = true;
+    int analysis_table[MAX_CHARS + 1] = {0}; // 51 элемент массива будет хранить количество слов длиной 50 и более 
+    // элементы с 1 по 49 будут хранить количество слов, длины которых соответсвуют индексу элемента 
 
     if (setlocale(LC_ALL, "ru_RU.UTF8") == 0)
     {
@@ -40,6 +44,12 @@ int main(void)
         printf("Start input >>>\n");
     }
 
+    // Протестируем вывод мз массива с тестовыми данными
+    analysis_table[4] = 3;
+    analysis_table[5] = 2;
+    analysis_table[1] = 4;
+    analysis_table[50] = 1;
+    analysis_table[51] = 2;
 
     if (locale_status)
     {
@@ -50,10 +60,16 @@ int main(void)
 
     }
 
-    printf("%8d | %d\n", 4, 3);
-    printf("%8d | %d\n", 5, 1);
-    printf("%8d | %d\n", 1, 4);
-    printf("%8d | %d\n", 2, 2);
+    for (int i = 1; i <= MAX_CHARS + 1; i++)
+    {
+        if(analysis_table[i] > 0 && i <= MAX_CHARS)
+        {
+            printf("%8d | %d\n", i, analysis_table[i]);
+        } else if(i == MAX_CHARS + 1)
+        {
+            printf("      50+| %d\n",analysis_table[i]);
+        }
+    }
     
     return 0;
 }
