@@ -24,17 +24,18 @@ int main(void)
     // флаг региональной настройки программы для вывода на экран
     bool locale_status = true;
 
-    int analysis_table[MAX_CHARS + 1] = {0}; 
-    // 50 элемент массива будет хранить количество слов длиной 50 и более 
+    int analysis_table[MAX_CHARS + 1] = {0};
+    // 50 элемент массива будет хранить количество слов длиной 50 и более
     // Элементы с 1 по 49 будут хранить количество слов,
-    // длины которых соответствуют индексу 
+    // длины которых соответствуют индексу
     // 0 элемент не задействован, так как слов с нулевой длиной нет
 
-    // выбор региональной настройки для вывода на русском языке 
+    // выбор региональной настройки для вывода на русском языке
     if (setlocale(LC_ALL, "ru_RU.UTF8") == 0)
     {
         // альтернативный способ, если не удалось первым
-        if (setlocale(LC_ALL, ".UTF8") == 0) {
+        if (setlocale(LC_ALL, ".UTF8") == 0)
+        {
 
             // сбросим флаг, так как не удалось настроить на русский язык
             locale_status = false;
@@ -42,17 +43,18 @@ int main(void)
             setlocale(LC_ALL, "");
         }
     }
-   
+
     // Вывод инструкции пользователя на экран в зависимости от locale_status
     // на русском или на латинице
-    if (locale_status) 
+    if (locale_status)
     {
         printf("Программа анализа длин слов\n");
         printf("Вводите текст (посимвольно). Для завершения:\n");
         printf("1. Нажмите Ctrl + X\n");
         printf("2. Затем нажмите Enter\n");
         printf("Начните ввод >>>\n");
-    } else
+    }
+    else
     {
         printf("Word length analysis program\n");
         printf("Input text (character by character). To exit:\n");
@@ -68,59 +70,61 @@ int main(void)
     analysis_table[5] = 12;
     analysis_table[1] = 3;
     analysis_table[MAX_CHARS] = 5;
-    */ 
+    */
 
-    //Вывод результатов на экран в зависимости от locale_status
-    // на русском или на английском
+    // Вывод результатов на экран в зависимости от locale_status
+    //  на русском или на английском
     if (locale_status)
     {
-        printf("   %s | %s\n","Длина","Слов");
-    } else
-    {
-        printf("%8s | %s\n","Length","Words");
-
+        printf("   %s | %s\n", "Длина", "Слов");
     }
-
+    else
+    {
+        printf("%8s | %s\n", "Length", "Words");
+    }
 
     // Выбор способа, с помощью которого результаты будут
     // отображаться на экране (гистограмма или таблица)
-    if(OUTPUT_TYPE)
+    if (OUTPUT_TYPE)
     {
         printf("   _____________\n");
         for (int i = 1; i <= MAX_CHARS; i++)
         {
-            if(analysis_table[i] > 0 && i < MAX_CHARS)
+            if (analysis_table[i] > 0 && i < MAX_CHARS)
             {
                 printf("%8d | ", i);
 
-                for(int j = 0; j < analysis_table[i]; j++) {
+                for (int j = 0; j < analysis_table[i]; j++)
+                {
                     putchar(HIST_CHAR);
                 }
                 putchar('\n');
-
-            } else if(analysis_table[i] > 0 && i == MAX_CHARS)
+            }
+            else if (analysis_table[i] > 0 && i == MAX_CHARS)
             {
-                printf("      %d+| ", MAX_CHARS);             
-                for(int j = 0; j < analysis_table[i]; j++) {
+                printf("      %d+| ", MAX_CHARS);
+                for (int j = 0; j < analysis_table[i]; j++)
+                {
                     putchar(HIST_CHAR);
                 }
                 putchar('\n');
             }
         }
-    } 
+    }
     else
     {
         for (int i = 1; i <= MAX_CHARS; i++)
         {
-            if(analysis_table[i] > 0 && i < MAX_CHARS)
+            if (analysis_table[i] > 0 && i < MAX_CHARS)
             {
                 printf("%8d | %d\n", i, analysis_table[i]);
-            } else if(analysis_table[i] > 0 && i == MAX_CHARS)
+            }
+            else if (analysis_table[i] > 0 && i == MAX_CHARS)
             {
                 printf("      %d+| %d\n", MAX_CHARS, analysis_table[i]);
             }
         }
     }
-    
+
     return 0;
 }
