@@ -22,19 +22,19 @@
 int main(void)
 {
     // флаг региональной настройки программы для вывода на экран
-    bool locale_status = true;
+    bool localeStatus = true;
 
     // текущий и послений символы
-    int c,
-        last_char = '\n';
+    int currentСhar,
+        lastСhar = '\n';
 
-    int analysis_table[MAX_CHARS + 1] = {0};
+    int analysisTable[MAX_CHARS + 1] = {0};
     // 50 элемент массива будет хранить количество слов длиной 50 и более
     // Элементы с 1 по 49 будут хранить количество слов,
     // длины которых соответствуют индексу
     // 0 элемент не задействован, так как слов с нулевой длиной нет
 
-    int word_length = 0; // длина текущего слова
+    int wordLength = 0; // длина текущего слова
 
     // выбор региональной настройки для вывода на русском языке
     if (setlocale(LC_ALL, "ru_RU.UTF8") == 0)
@@ -44,15 +44,15 @@ int main(void)
         {
 
             // сбросим флаг, так как не удалось настроить на русский язык
-            locale_status = false;
+            localeStatus = false;
             // используем настройки системы
             setlocale(LC_ALL, "");
         }
     }
 
-    // Вывод инструкции пользователя на экран в зависимости от locale_status
+    // Вывод инструкции пользователя на экран в зависимости от localeStatus
     // на русском или на латинице
-    if (locale_status)
+    if (localeStatus)
     {
         printf("Программа анализа длин слов\n");
         printf("Вводите текст только на английском. Для завершения:\n");
@@ -70,36 +70,38 @@ int main(void)
     }
 
     // Получение и проверка символа с клавиатуры
-    while((c = getchar()) != 24) {
+    while((currentСhar = getchar()) != 24) {
 
         // проверка на завершение слова
-        if( (c == ' ' || c == '\t' || c == '\n') &&
-            !(last_char == ' ' || last_char == '\t' || last_char == '\n') &&
-            word_length > 0)
+        if( (currentСhar == ' ' || currentСhar == '\t' || currentСhar == '\n')
+            && !(lastСhar == ' ' || lastСhar == '\t' || lastСhar == '\n') &&
+            wordLength > 0)
         {   // проверка если длина в диапазоне до максимального значения
-            if(word_length < MAX_CHARS) 
+            if(wordLength < MAX_CHARS) 
             {
-                analysis_table[word_length]++; // увеличиваем счётчик слов этой длины
+                // увеличиваем счётчик слов этой длины
+                analysisTable[wordLength]++; 
             }
             else 
             {
                 // увеличиваем счётчик слова максимальной длины или большей
-                analysis_table[MAX_CHARS]++; 
+                analysisTable[MAX_CHARS]++; 
             }
-            word_length = 0; // обнуляем счётчик для нового слова
+            wordLength = 0; // обнуляем счётчик для нового слова
         }
-        else if(!(c == ' ' || c == '\t' || c == '\n'))
+        else if(!(currentСhar == ' ' || 
+                currentСhar == '\t' || currentСhar == '\n'))
         {
-            word_length++; // продолжаем увеличивать длину текущего слова
+            wordLength++; // продолжаем увеличивать длину текущего слова
         }
 
-        last_char = c;
+        lastСhar = currentСhar;
     }
 
     // Обработка ошибок при вводе
     if(ferror(stdin)) {
 
-        if(locale_status)
+        if(localeStatus)
         {
             perror("Ошибка ввода.");
         }
@@ -112,22 +114,26 @@ int main(void)
 
     // Если последний символ не управляющий, надо учесть длину последнего слова
     //  и увеличить его счётчик
-    if( !(last_char == ' ' || last_char == '\t' || last_char == '\n') && word_length > 0) {
+    if(
+        !(lastСhar == ' ' || lastСhar == '\t' || lastСhar == '\n')
+        && wordLength > 0)
+    {
 
-            if(word_length < MAX_CHARS) 
+            if(wordLength < MAX_CHARS) 
             {
-                analysis_table[word_length]++; // увеличиваем счётчик слов этой длины
+                analysisTable[wordLength]++; 
+                // увеличиваем счётчик слов этой длины
             }
             else 
             {
                 // увеличиваем счётчик слова максимальной длины или большей
-                analysis_table[MAX_CHARS]++; 
+                analysisTable[MAX_CHARS]++; 
             }
     }
 
-    // Вывод результатов на экран в зависимости от locale_status
+    // Вывод результатов на экран в зависимости от localeStatus
     //  на русском или на английском
-    if (locale_status)
+    if (localeStatus)
     {
         printf("   %s | %s\n", "Длина", "Слов");
     }
@@ -141,22 +147,27 @@ int main(void)
     if (OUTPUT_TYPE)
     {
         printf("   _____________\n");
-        for (int i = 1; i <= MAX_CHARS; i++)
+        for (int countCharacters = 1; 
+            countCharacters <= MAX_CHARS; countCharacters++)
         {
-            if (analysis_table[i] > 0 && i < MAX_CHARS)
+            if (analysisTable[countCharacters] > 0 && 
+                countCharacters < MAX_CHARS)
             {
-                printf("%8d | ", i);
+                printf("%8d | ", countCharacters);
 
-                for (int j = 0; j < analysis_table[i]; j++)
+                for (int countWords = 0; 
+                    countWords < analysisTable[countCharacters]; countWords++)
                 {
                     putchar(HIST_CHAR);
                 }
                 putchar('\n');
             }
-            else if (analysis_table[i] > 0 && i == MAX_CHARS)
+            else if (analysisTable[countCharacters] > 0 
+                && countCharacters == MAX_CHARS)
             {
                 printf("      %d+| ", MAX_CHARS);
-                for (int j = 0; j < analysis_table[i]; j++)
+                for (int countWords = 0; 
+                    countWords < analysisTable[countCharacters]; countWords++)
                 {
                     putchar(HIST_CHAR);
                 }
@@ -166,17 +177,20 @@ int main(void)
     }
     else
     {
-        for (int i = 1; i <= MAX_CHARS; i++)
+     for (int countCharacters = 1; 
+        countCharacters <= MAX_CHARS; countCharacters++)
+     {
+        if (analysisTable[countCharacters] > 0 && 
+            countCharacters < MAX_CHARS)
         {
-            if (analysis_table[i] > 0 && i < MAX_CHARS)
-            {
-                printf("%8d | %d\n", i, analysis_table[i]);
-            }
-            else if (analysis_table[i] > 0 && i == MAX_CHARS)
-            {
-                printf("      %d+| %d\n", MAX_CHARS, analysis_table[i]);
-            }
+         printf("%8d | %d\n", countCharacters, analysisTable[countCharacters]);
         }
+        else if (analysisTable[countCharacters] > 0 && 
+            countCharacters == MAX_CHARS)
+        {
+         printf("      %d+| %d\n", MAX_CHARS, analysisTable[countCharacters]);
+        }
+     }
     }
 
     return 0;

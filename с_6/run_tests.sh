@@ -33,7 +33,7 @@ echo -e "Aasgjhfbnahfjasnfjhasnfjasnfajkhcasfjnsajskfdncsahv next\nrow will be c
 echo "Тест 4"
 echo "Ожидаемый результат:"
 echo "  2 | 1"
-echo "  3 | 2"
+echo "  3 | 3"
 echo "  4 | 2"
 echo "50+ | 2"
 ./bin/c_6 < test4.in
