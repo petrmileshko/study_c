@@ -76,7 +76,7 @@ int main(void)
         if( (c == ' ' || c == '\t' || c == '\n') &&
             !(last_char == ' ' || last_char == '\t' || last_char == '\n') &&
             word_length > 0)
-        {
+        {   // проверка если длина в диапазоне до максимального значения
             if(word_length < MAX_CHARS) 
             {
                 analysis_table[word_length]++; // увеличиваем счётчик слов этой длины
