@@ -89,7 +89,7 @@ int main(void)
             analysis_table[word_length]++; // увеличиваем счётчик слов этой длины
             word_length = 0; // обнуляем для нового слова
         }
-        else
+        else if(!(c == ' ' || c == '\t' || c == '\n'))
         {
             word_length++; // продолжаем увеличивать длину текущего слова
         }
