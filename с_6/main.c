@@ -86,7 +86,15 @@ int main(void)
             !(last_char == ' ' || last_char == '\t' || last_char == '\n') &&
             word_length > 0)
         {
-            analysis_table[word_length]++; // увеличиваем счётчик слов этой длины
+            if(word_length < MAX_CHARS) 
+            {
+                analysis_table[word_length]++; // увеличиваем счётчик слов этой длины
+            }
+            else 
+            {
+                // увеличиваем счётчик слова максимальной длины
+                analysis_table[MAX_CHARS]++; 
+            }
             word_length = 0; // обнуляем для нового слова
         }
         else if(!(c == ' ' || c == '\t' || c == '\n'))
@@ -114,7 +122,16 @@ int main(void)
     // Если последний символ не управляющий, надо учесть длину последнего слова
     //  и увеличить его счётчик
     if( !(last_char == ' ' || last_char == '\t' || last_char == '\n') && word_length > 0) {
-        analysis_table[word_length]++;
+
+            if(word_length < MAX_CHARS) 
+            {
+                analysis_table[word_length]++; // увеличиваем счётчик слов этой длины
+            }
+            else 
+            {
+                // увеличиваем счётчик слова максимальной длины
+                analysis_table[MAX_CHARS]++; 
+            }
     }
 
     // Вывод результатов на экран в зависимости от locale_status

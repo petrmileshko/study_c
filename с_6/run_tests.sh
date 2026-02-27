@@ -21,12 +21,9 @@ echo "2 | 1"
 echo "----------------------------------------"
 
 # Тест 3: Длинное слово
-echo -e "Aasgjhfbnahfjasnfjhasnfjasnfajkhcasfjnsajskfdncsah Second\x18" > test3.in
+echo -e "Aasgjhfbnahfjasnfjhasnfjasnfajkhcasfjnsajskfdncsahv\x18" > test3.in
 echo "Тест 3"
 echo "Ожидаемый результат:"
-echo "  6 | 1"
 echo "50+ | 1"
 ./bin/c_6 < test3.in
-
 echo "========================================"
-
