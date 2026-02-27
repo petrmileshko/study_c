@@ -12,11 +12,21 @@ echo "4 | 4"
 echo "----------------------------------------"
 
 # Тест 2: Два коротких слова
-echo -e "\t2\x18" > test2.in
+echo -e "As\t2\x18" > test2.in
 echo "Тест 2"
 echo "Ожидаемый результат:"
 echo "1 | 1"
 echo "2 | 1"
 ./bin/c_6 < test2.in
+echo "----------------------------------------"
+
+# Тест 3: Длинное слово
+echo -e "Aasgjhfbnahfjasnfjhasnfjasnfajkhcasfjnsajskfdncsah Second\x18" > test3.in
+echo "Тест 3"
+echo "Ожидаемый результат:"
+echo "  6 | 1"
+echo "50+ | 1"
+./bin/c_6 < test3.in
 
 echo "========================================"
+
