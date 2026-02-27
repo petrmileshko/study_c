@@ -26,4 +26,15 @@ echo "Тест 3"
 echo "Ожидаемый результат:"
 echo "50+ | 1"
 ./bin/c_6 < test3.in
+echo "----------------------------------------"
+
+# Тест 4: Длинные и короткие слова
+echo -e "Aasgjhfbnahfjasnfjhasnfjasnfajkhcasfjnsajskfdncsahv next\nrow will be cut off\nfdsfsdfdsfsdfsdfsdfsdfsdfsdfsdfsdfdfsdfsdffsdfsdfdsfsd\x18" > test4.in
+echo "Тест 4"
+echo "Ожидаемый результат:"
+echo "  2 | 1"
+echo "  3 | 2"
+echo "  4 | 2"
+echo "50+ | 2"
+./bin/c_6 < test4.in
 echo "========================================"
